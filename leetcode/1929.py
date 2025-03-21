@@ -3,7 +3,7 @@
 # Specifically, ans is the concatenation of two nums arrays.
 # Return the array ans.
 
-#Example 1:
+# Example 1:
 # Input: nums = [1,2,1]
 # Output: [1,2,1,1,2,1]
 # Explanation: The array ans is formed as follows:
