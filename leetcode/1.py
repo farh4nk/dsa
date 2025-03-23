@@ -6,16 +6,13 @@
 # Input: nums = [2,7,11,15], target = 9
 # Output: [0,1]
 
-from collections import defaultdict
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        map = defaultdict(int)
-
+        indices = {}
         for i, num in enumerate(nums):
-            map[num] = i
-
-        for i, num in enumerate(nums):
-            difference = target - num
-            if difference in map and map[difference] != i:
-                return i, map[difference]
+            if target - num in indices:
+                return [indices[target - num], i]
+            else:
+                indices[num] = i
+        
         
