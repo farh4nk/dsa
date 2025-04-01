@@ -8,3 +8,23 @@
 # Example 2:
 # Input: nums = [-1,1,0,-3,3]
 # Output: [0,0,9,0,0]
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = []
+        prefix = [0] * n
+        postfix = [0] * n
+        l = 0
+        r = n - 1
+        prefixprod, postfixprod = 1, 1
+        while (l < n and r >= 0):
+            prefix[l] = prefixprod
+            prefixprod *= nums[l]
+            l += 1
+            postfix[r] = postfixprod
+            postfixprod *= nums[r]
+            r -= 1
+        for i in range(n):
+            res.append(prefix[i] * postfix[i])
+        return res
