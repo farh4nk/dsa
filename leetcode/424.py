@@ -9,3 +9,16 @@
 # Input: s = "AAABABB", k = 1
 # Output: 5
 
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        maxLen = 0
+        count = {}
+        l = 0
+
+        for r in range(len(s)):
+          count[s[r]] = count.get(s[r], 0) + 1                  # count freq of each char
+          while (r - l + 1) - max(count.values()) > k:          # while window not valid
+              count[s[l]] -= 1                                  # decrement frequency of leftmost char
+              l += 1                                            # move up left pointer
+          maxLen = max(maxLen, r - l + 1)                       # update maximum depending on size of current window
+        return maxLen
