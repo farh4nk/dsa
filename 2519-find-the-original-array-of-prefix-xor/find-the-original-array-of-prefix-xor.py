@@ -3,7 +3,6 @@ class Solution:
         res = [pref[0]]
 
         for i in range(len(pref) - 1):
-            xor = pref[i] ^ pref[i+1]
-            res.append(xor)
+            res.append(pref[i] ^ pref[i+1])
 
         return res
