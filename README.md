@@ -1,1 +1,3 @@
-Data Structures and Algorithms, LeetCode, Technical Interview Prep
+Grinding Leetcode
+
+Pushes automated with Leetsync
