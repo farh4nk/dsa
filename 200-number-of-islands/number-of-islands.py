@@ -8,7 +8,7 @@ class Solution:
         def bfs(rw, cl):
             q = deque() # queue to keep track of current island
             q.append((rw, cl)) # add curr pos to seen and curr island
-            #seen.add((rw, cl))
+            seen.add((rw, cl))
             while q:
                 currRow, currCol = q.popleft() # get current pos via popleft
                 for dr, dc in dirs:
