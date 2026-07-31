@@ -22,11 +22,10 @@ class Solution:
                         grid[nextR][nextC] == 1):
                         queue.append( (nextR, nextC) )
                         visited.add( (nextR, nextC) )
-                        grid[nextR][nextC] = 2
             if queue:
                 mins += 1
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if grid[i][j] == 1:
+                if grid[i][j] == 1 and (i, j) not in visited:
                     return -1
         return mins
