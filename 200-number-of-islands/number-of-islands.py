@@ -1,31 +1,27 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         islands = 0
-        seen = set()
-        rows, cols = len(grid), len(grid[0])
-        dirs = [[0,1], [0,-1], [1,0], [-1,0]]
+        dirs = [[0,1], [1,0], [0,-1], [-1,0]]
+        visited = set()
+        
+        # find the rest of an island when new land is discovered
+        def find(r, c):
+            visited.add((r, c))
 
-        def bfs(rw, cl):
-            q = deque() # queue to keep track of current island
-            q.append((rw, cl)) # add curr pos to seen and curr island
-            seen.add((rw, cl))
-            while q:
-                currRow, currCol = q.popleft() # get current pos via popleft
-                for dr, dc in dirs:
-                    newRow = currRow + dr # explore all directions from curr pos
-                    newCol = currCol + dc
+            for d in dirs:
+                nR = r + d[0]
+                nC = c + d[1]
 
-                    if (newRow in range(rows) and # if its in range
-                        newCol in range(cols) and
-                        grid[newRow][newCol] == '1' and # and its land
-                        (newRow, newCol) not in seen # and we haven't already seen it
-                    ):
-                        q.append((newRow, newCol)) # add new pos to the curr island
-                        seen.add((newRow, newCol)) # and add it to seen positions
+                if ((nR, nC) not in visited and
+                    0 <= nR < len(grid) and
+                    0 <= nC < len(grid[0]) and
+                    grid[nR][nC] == '1'):
+                    find(nR, nC)
 
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == '1' and (r, c) not in seen: # if we come across land we haven't seen
-                    bfs(r, c) # do bfs to look for rest of island
-                    islands += 1 # found new island, increment
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == '1' and (row, col) not in visited:
+                    islands += 1
+                    find(row, col)
+
         return islands
